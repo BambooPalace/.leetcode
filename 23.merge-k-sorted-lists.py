@@ -16,7 +16,7 @@ class Solution(object):
         :type lists: List[ListNode]
         :rtype: ListNode
         """
-        # NO1 HARD:directly go to halfrost, Divide and Conquer
+        # NO1 HARD:directly go to halfrost, recursive
         if not lists:
             return None
         n = len(lists)
@@ -39,7 +39,8 @@ class Solution(object):
         l2.next = self.mergeTwoLists(l1, l2.next)
         return l2
 
-        # NO2 Garvit, similar to official sol, confusing...
+    def mergeKListsByTwo(self, lists):
+        # NO2 Garvit, after seeing VIDEO can understand ... O(nlogk)
         if not lists:
             return None
         interval = 1
@@ -47,7 +48,7 @@ class Solution(object):
         while interval < n:
             # ??
         	for index in range(0, n - interval ,interval*2):
-        		lists[index] = merge2Lists(lists[index], lists[index+interval])
+        		lists[index] = self.mergeTwoLists(lists[index], lists[index+interval])
 
         	interval *= 2
 

@@ -13,7 +13,7 @@ class Solution(object):
         :rtype: bool
         """
         # seem difficult, go straight to solution, still hate backtracking, understand None
-        # NO1 Garvit
+        # NO1 Garvit, DFS more common approach, O(m*n*4**l): dfs worst is O(4**l), O(1)? O(m+n)
         m = len(board)
         n = len(board[0])
         res = False
@@ -23,20 +23,20 @@ class Solution(object):
                     return True
         return False
     
-    def dfs(self, board, word, row, col, curr_len):        
+    def dfs(self, board, word, row, col, depth):        
         if row < 0 or col < 0 or row >= len(board) or col>= len(board[0]):
             return False
         # what is current length?
-        if board[row][col] == word[curr_len]:
+        if board[row][col] == word[depth]:
             c = board[row][col]
             board[row][col] = '#' #??
-            if curr_len == len(word) - 1:
+            if depth == len(word) - 1:
                 return True
             # 4 directions
-            elif self.dfs(board, word, row-1, col, curr_len+1)\
-                or self.dfs(board, word, row+1, col, curr_len+1)\
-                or self.dfs(board, word, row, col-1, curr_len+1)\
-                or self.dfs(board, word, row, col+1, curr_len+1):
+            elif self.dfs(board, word, row-1, col, depth+1)\
+                or self.dfs(board, word, row+1, col, depth+1)\
+                or self.dfs(board, word, row, col-1, depth+1)\
+                or self.dfs(board, word, row, col+1, depth+1):
                 return True
             board[row][col] = c
 

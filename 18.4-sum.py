@@ -13,7 +13,7 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         # own, reuse three sum, code 10 min, debug 10min FAIL
-        # BUG: return [], why????
+        # BUG: return [], threeSum function is wrong... why????
         n = len(nums)
         if n < 4:
             return []
